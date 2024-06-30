@@ -1,12 +1,12 @@
-export type AdjoinType = Array<string>;
+import { AdjoinType } from "./data";
 
-export default class AdjoinMatrix {
+export class AdjoinMatrix {
   vertex: AdjoinType; // 顶点数组
   quantity: number; // 矩阵长度
   adjoinArray: Array<any>; // 矩阵数组
 
-  constructor(vertx: AdjoinType) {
-    this.vertex = vertx;
+  constructor(vertex: AdjoinType) {
+    this.vertex = vertex;
     this.quantity = this.vertex.length;
     this.adjoinArray = [];
     this.init();
@@ -21,7 +21,7 @@ export default class AdjoinMatrix {
    * @param sides Array<string>
    *  传入一个顶点，和当前顶点可达的顶点数组，将对应位置设置权值
    */
-  setAdjoinVertexs(id: string, sides: AdjoinType, weight: number) {
+  setAdjoinVertexes(id: string, sides: AdjoinType, weight: number) {
     const pIndex = this.vertex.indexOf(id);
     sides.forEach((item) => {
       const index = this.vertex.indexOf(item);

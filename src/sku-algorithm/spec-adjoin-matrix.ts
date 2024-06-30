@@ -1,8 +1,7 @@
-import AdjoinMatrix from "./adjoin-martix";
-import { AdjoinType } from "./adjoin-martix";
-import { SpecCategoryType, CommoditySpecsType } from "../redux/reducer/spec-reducer";
+import { AdjoinMatrix } from "./adjoin-matrix";
+import { SpecCategoryType, CommoditySpecsType, AdjoinType } from "./data";
 
-export default class SpecAdjoinMatrix extends AdjoinMatrix {
+export class SpecAdjoinMatrix extends AdjoinMatrix {
   specList: Array<CommoditySpecsType>;
   specCombinationList: Array<SpecCategoryType>;
 
@@ -42,16 +41,16 @@ export default class SpecAdjoinMatrix extends AdjoinMatrix {
    * @params
    * 传入顶点数组，查询出可选规格
    */
-  getSpecscOptions(params: AdjoinType) {
-    let specOptionCanchoose: AdjoinType = [];
+  getSpecsOptions(params: AdjoinType) {
+    let specOptionCanChoose: AdjoinType = [];
     if (params.some(Boolean)) {
       // 获取可选项（交集）
-      specOptionCanchoose = this.getUnions(params.filter(Boolean));
+      specOptionCanChoose = this.getUnions(params.filter(Boolean));
     } else {
       // 所有可选项
-      specOptionCanchoose = this.getCollection(this.vertex);
+      specOptionCanChoose = this.getCollection(this.vertex);
     }
-    return specOptionCanchoose;
+    return specOptionCanChoose;
   }
 
   /*
@@ -60,7 +59,7 @@ export default class SpecAdjoinMatrix extends AdjoinMatrix {
    */
   fillInSpec(params: AdjoinType, weight: number) {
     params.forEach((param) => {
-      this.setAdjoinVertexs(param, params, weight);
+      this.setAdjoinVertexes(param, params, weight);
     });
   }
 }

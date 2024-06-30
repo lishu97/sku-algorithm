@@ -169,7 +169,7 @@ export default class AdjoinMatrix {
    * @param sides Array<string>
    *  传入一个顶点，和当前顶点可达的顶点数组，将对应位置置为1
    */
-  setAdjoinVertexs(id: string, sides: AdjoinType) {
+  setAdjoinVertexes(id: string, sides: AdjoinType) {
     const pIndex = this.vertex.indexOf(id);
     sides.forEach((item) => {
       const index = this.vertex.indexOf(item);
@@ -289,15 +289,15 @@ export default class SpecAdjoinMatrix extends AdjoinMatrix {
    * @param params
    */
   getSpecscOptions(params: AdjoinType) {
-    let specOptionCanchoose: AdjoinType = [];
+    let specOptionCanChoose: AdjoinType = [];
     if (params.some(Boolean)) {
       // 过滤一下选项
-      specOptionCanchoose = this.getUnions(params.filter(Boolean));
+      specOptionCanChoose = this.getUnions(params.filter(Boolean));
     } else {
       // 所有可选项
-      specOptionCanchoose = this.getCollection(this.vertex);
+      specOptionCanChoose = this.getCollection(this.vertex);
     }
-    return specOptionCanchoose;
+    return specOptionCanChoose;
   }
 
   /**
@@ -306,7 +306,7 @@ export default class SpecAdjoinMatrix extends AdjoinMatrix {
    */
   fillInSpec(params: AdjoinType) {
     params.forEach((param) => {
-      this.setAdjoinVertexs(param, params);
+      this.setAdjoinVertexes(param, params);
     });
   }
 }
